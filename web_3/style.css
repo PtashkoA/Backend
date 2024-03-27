@@ -27,7 +27,7 @@ label {
 input[type="text"],
 input[type="tel"],
 input[type="email"],
-input[type="date"],
+input[type="date_of_birth"],
 textarea,
 select {
     width: 100%;
