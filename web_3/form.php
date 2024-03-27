@@ -3,17 +3,6 @@
 $user = 'u67326';
 $pass = '6963806';
 $db = new PDO('mysql:host=localhost;dbname=u67326', $user, $pass, [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-
-$languages = []; 
-
-try {
-    $stmt = $db->prepare("SELECT * FROM p_languages;");
-    $stmt->execute(); 
-    $languages = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    print($e->getMessage());
-    exit();
-}
 ?>
 
 <html lang="ru">
@@ -48,7 +37,7 @@ try {
 
                 Дата рождения:
                 <input name="date_of_birth" id="date_of_birth" type="date" class="form-control" />
-
+                
             </div>
             <div class="form-group">
                 Пол:
