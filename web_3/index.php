@@ -31,6 +31,11 @@ if (empty($_POST['date_of_birth']) || !is_numeric($_POST['date_of_birth']) || !p
   $errors = TRUE;
 }
 
+if (empty($_POST['gender']) || !is_numeric($_POST['gender']) || !preg_match('/^\d+$/', $_POST['gender'])) {
+  print('Заполните пол.<br/>');
+  $errors = TRUE;
+}
+
 if ($errors) {
   exit();
 }
@@ -41,7 +46,7 @@ $db = new PDO('mysql:host=localhost;dbname=u67326', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 try {
   $stmt = $db->prepare("INSERT INTO application SET name = ?");
-  $stmt->execute([$_POST['fio'], $_POST['date_of_birth', $_POST['tel'], $_POST['fio'], $_POST['email']]);
+  $stmt->execute([$_POST['fio'], $_POST['date_of_birth', $_POST['tel'], $_POST['fio'], $_POST['email'], $_POST['gender']]);
 }
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());
