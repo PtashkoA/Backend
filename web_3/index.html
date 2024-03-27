@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрационная форма</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script src="script.js"></script>
+    
+    <h1>Форма для регистрации</h1>
+    <form action="#" method="post">
+        <label for="fullName">ФИО:</label><br>
+        <input type="text" id="fullName" name="fullName"><br><br>
 
+        <label for="phone">Телефон:</label><br>
+        <input type="tel" id="phone" name="phone"><br><br>
+
+        <label for="email">E-mail:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="dob">Дата рождения:</label><br>
+        <input type="date" id="dob" name="dob"><br><br>
+
+        <label>Пол:</label><br>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Мужской</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Женский</label><br><br>
+
+        <label for="favLanguage">Любимый язык программирования:</label><br>
+        <select id="favLanguage" name="favLanguage" multiple>
+            <option value="Pascal">Pascal</option>
+            <option value="C">C</option>
+            <option value="C++">C++</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="PHP">PHP</option>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="Haskel">Haskel</option>
+            <option value="Clojure">Clojure</option>
+            <option value="Prolog">Prolog</option>
+            <option value="Scala">Scala</option>
+        </select><br><br>
+
+        <label for="bio">Биография:</label><br>
+        <textarea id="bio" name="bio" rows="4" cols="50"></textarea><br><br>
+
+        <input type="checkbox" id="contract" name="contract">
+        <label for="contract">С контрактом ознакомлен(а)</label><br><br>
+
+        <input type="submit" value="Сохранить">
+    </form>
+</body>
+</html>
