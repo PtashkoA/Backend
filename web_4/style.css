@@ -5,7 +5,7 @@ body {
     flex-direction: column;
     min-height: 98vh;
     font-family: Montserrat;
-    background: rgba(91, 187, 100, 0.864);
+    background: rgba(255, 187, 100, 0.864);
 }
 
 form {
