@@ -5,15 +5,15 @@ body {
     flex-direction: column;
     min-height: 98vh;
     font-family: Montserrat;
-    background: rgba(200, 206, 214, 0.864);
+    background: rgba(91, 187, 100, 0.864);
 }
 
 form {
     display: flex;
     flex-direction: column;
     padding: 30px;
-    color: white;
-    background: rgba(90, 113, 114, 0.8);
+    color: blue;
+    background: rgba(200, 108, 91, 0.8);
 }
 
 .form-item {
