@@ -12,7 +12,7 @@ form {
     display: flex;
     flex-direction: column;
     padding: 30px;
-    color: blue;
+    color: white;
     background: rgba(200, 108, 91, 0.8);
 }
 
