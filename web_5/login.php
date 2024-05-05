@@ -46,7 +46,7 @@ else {
     exit();
   }
 
-  include('dbconnect.php');
+  include $_SERVER['DOCUMENT_ROOT'] . '/files/db.connect.php';
   
   $stmt = $db->prepare('SELECT user_id FROM users WHERE (login = ?) AND (password = ?) ');
   $stmt->execute([$login, md5($password)]);
