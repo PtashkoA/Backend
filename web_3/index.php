@@ -76,12 +76,8 @@ if (empty($_POST['lang'])) {
       $errors = TRUE;
       break;
     }
-    else {
-  $sth = $db->prepare("INSERT INTO form_lang (idlang) VALUES (idlang");
-  $sth->execute([$idlang]);
-}
   }
-}
+}}
 
 if (empty($_POST['bio'])) {
   print('Заполните био.<br/>');
