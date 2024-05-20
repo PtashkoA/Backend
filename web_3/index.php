@@ -46,10 +46,10 @@ if (empty($_POST['radio1'])) {
   $errors = TRUE;
 }
 
-include('./password.php');
+include('../password.php');
     if (!empty($_COOKIE[session_name()]) &&
-    session_start() && !empty($_SESSION['user'])){
-        $userLogin = $_SESSION['user'];
+    session_start() && !empty($_SESSION['$user'])){
+        $userLogin = $_SESSION['$user'];
     }
 $db = new PDO('mysql:host=localhost;dbname=u67326', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
