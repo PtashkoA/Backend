@@ -76,6 +76,9 @@ if (empty($_POST['lang'])) {
       $errors = TRUE;
       break;
     }
+    else {
+      $sth = $db->prepare("INSERT INTO form_lang (idlang) VALUES (?)");
+      $sth->execute([$idlang]);
   }
 }
 
