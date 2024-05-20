@@ -79,6 +79,7 @@ if (empty($_POST['lang'])) {
     else {
       $sth = $db->prepare("INSERT INTO form_lang (idlang) VALUES (?)");
       $sth->execute([$idlang]);
+    }
   }
 }
 
@@ -116,3 +117,4 @@ catch(PDOException $e){
 }
 
 header('Location: ?save=1');
+?>
