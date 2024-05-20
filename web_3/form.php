@@ -1,119 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-  <link rel="stylesheet" href="style.css">
-  <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3</title>
 </head>
 <body>
-  <form action="" method="POST">
-    <div class="form-head">
-        <h1>Форма</h1>
-    </div>
-    <div class="form-content">
-      <div class="form-item">
-        <div class="form-item">
-          <label class="labelText">Имя</label>
-          <input class="line" type="text" name="name" placeholder="">
-        </div>
-        <div class="form-item">
-          <label class="labelText" for="phone">Телефон</label>
-          <input class="line" type="tel" name="phone" placeholder="">
-        </div>
-        <div class="form-item">
-          <label class="labelText" for="email">Email</label>
-          <input class="line" type="text" name="email" placeholder="">
-        </div>
-      </div>
-      <div class="form-item">
-        <div class="date">
-          <span>Год рождения:</span>
-          <select name="year">
+
+    <form action="index.php"
+        method="POST">
+
+        <label>
+            ФИО: <br />
+            <input name="fio"
+            type="text"
+            placeholder="Введите ваше ФИО" />
+        </label> <br />
+
+        <label id = "telephone"> 
+            Номер телефона: <br />
+            <input name="tel"
+            type="tel"
+            placeholder="Введите ваш номер" />
+        </label> <br />
+        
+        <label>
+            Email: <br />
+            <input name="email"
+            type="email"
+            placeholder="Введите вашу почту" />
+        </label> <br />
+        
+        <label>
+            Дата рождения: <br />
+            <select name="year">
             <?php 
-              for ($i = 2024; $i >= 1924; $i--) {
-                printf('<option value="%d">%d год</option>', $i, $i);
-              }
+            for ($i = 1922; $i <= 2022; $i++) {
+            printf('<option value="%d">%d год</option>', $i, $i);
+            }
             ?>
-          </select>
-        </div>
-      </div>
-      <div class="form-item">
-        <p>Пол:</p>
-        <ul>
-          <li>
-            <input type="radio" id="radioMale" name="gender" value="male" checked>
-            <label for="radioMale">Мужчина</label>
-          </li>
-          <li>
-            <input type="radio" id="radioFemale" name="gender" value="female">
-            <label for="radioFemale">Женщина</label>
-          </li>
-        </ul>
-      </div>
-      <div class="form-item">
-        <p>Выбери любимые<br>языки программирования:</p>
-        <ul>
-          <li>
-            <input type="checkbox" id="Pascal" name="languages[]" value=1>
-            <label for="Pascal">Pascal</label>
-          </li>
-          <li>
-            <input type="checkbox" id="C" name="languages[]" value=2>
-            <label for="C">C</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Cpp" name="languages[]" value=3>
-            <label for="Cpp">C++</label>
-          </li>
-          <li>
-            <input type="checkbox" id="JavaScript" name="languages[]" value=4>
-            <label for="JavaScript">JavaScript</label>
-          </li>
-          <li>
-            <input type="checkbox" id="PHP" name="languages[]" value=5>
-            <label for="PHP">PHP</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Python" name="languages[]" value=6>
-            <label for="Python">Python</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Java" name="languages[]" value=7>
-            <label for="Java">Java</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Haskel" name="languages[]" value=8>
-            <label for="Haskel">Haskel</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Clojure" name="languages[]" value=9>
-            <label for="Clojure">Clojure</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Prolog" name="languages[]" value=10>
-            <label for="Prolog">Prolog</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Scala" name="languages[]" value=11>
-            <label for="Scala">Scala</label>
-          </li>
-        </ul> 
-      </div>
-      <div class="form-item">
-        <p class="big-text">Расскажи о себе:</p>
-        <textarea name="biography" cols=24 rows=4 maxlength=128 spellcheck="false"></textarea>
-      </div>
-    </div>  
-    <div class="send">
-      <div class="contract">
-        <input type="checkbox" id="checkboxContract" name="checkboxContract">
-        <label for="checkboxContract">С контрактом ознакомлен</label>
-      </div>
-      <input class="btn" type="submit" name="submit" value="Отправить" />
-    </div>
-  </form>
-</body> 
+            </select>
+
+            <select name="month">
+            <?php 
+            for ($i = 1; $i <= 12; $i++) {
+            printf('<option value="%d">%d месяц</option>', $i, $i);
+            }
+            ?>
+            </select>
+
+            <select name="day">
+            <?php 
+            for ($i = 1; $i <= 31; $i++) {
+            printf('<option value="%d">%d день</option>', $i, $i);
+            }
+            ?>
+            </select>
+        </label> <br />
+        
+        <label>
+            Пол: <br />
+            <input type="radio" 
+            name="radio1" value="woman" />
+            Женский</label>
+        <label>
+            <input type="radio"
+            name="radio1" value="man" />
+            Мужской</label> <br />
+
+        <label>
+        Любимый язык программирования: <br />
+        <select name="lang[]"
+        multiple="multiple">
+        <option value="1">Pascal</option>
+        <option value="2">C</option>
+        <option value="3">C++</option>
+        <option value="4">JavaScript</option>
+        <option value="5">PHP</option>
+        <option value="6">Python</option>
+        <option value="7">Java</option>
+        <option value="8">Haskel</option>
+        <option value="9">Clojure</option>
+        <option value="10">Prolog</option>
+        <option value="11">Scala</option>
+        </select>
+        </label> <br />
+
+        <label>
+            Биография: <br />
+            <textarea name="bio">Я программист</textarea>
+        </label> <br />
+        
+        <label>
+            С контрактом ознакомлен(а): <br />
+            <input type="checkbox"
+            name="check-1" />
+        </label> <br />
+
+        <label>
+            <input type="submit" value="Сохранить"
+            name="button" />
+        </label> <br />
+
+    </form>
+
+</body>
 </html>
