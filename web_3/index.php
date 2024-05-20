@@ -77,7 +77,7 @@ if (empty($_POST['lang'])) {
       break;
     }
   }
-}}
+}
 
 if (empty($_POST['bio'])) {
   print('Заполните био.<br/>');
@@ -113,4 +113,3 @@ catch(PDOException $e){
 }
 
 header('Location: ?save=1');
-?>
