@@ -138,7 +138,7 @@ else {
     session_start() && !empty($_SESSION['login'])){
         $userLogin = $_SESSION['login'];
     }
-    $db = new PDO('mysql:host=localhost;dbname=u67327', $user, $pass,
+    $db = new PDO('mysql:host=localhost;dbname=u67326', $user, $pass,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
 
   $errorlang = FALSE;
