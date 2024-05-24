@@ -1,65 +1,76 @@
+<link rel="stylesheet" href="style.css">
 <?php
+
 header('Content-Type: text/html; charset=UTF-8');
-session_start();
 
-if (!empty($_SESSION['login'])) {
-  header('Location: ./');
+$session_started = false;
+if (!empty($_COOKIE[session_name()]) && session_start()) {
+  $session_started = true;
+  if (!empty($_SESSION['login'])) {
+    ?>
+      <section>
+        <form action="" method="post">
+          <div>Пользователь уже авторизован</div><br>
+          <input type="submit" name="logout" value="Выход"/>
+        </form>
+      </section>
+    <?php
+    if (isset($_POST['logout'])) {
+      session_destroy();
+      setcookie('PHPSESSID', '', 100000, '/');
+      header('Location: ./');
+      exit();
+    }
+    
+  }
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  $messages = array();
-  $errors = array();
-  $errors['login1'] = !empty($_COOKIE['login_error1']);
-  $errors['login2'] = !empty($_COOKIE['login_error2']);
-  $errors['password'] = !empty($_COOKIE['password_error']);
-
-  if (!empty($errors['login1'])) {
-    setcookie('login_error1', '', 100000);
-    $messages['login1'] = '<p class="msg">Вы не заполнили логин</p>';
-  }
-  if (!empty($errors['login2'])) {
-    setcookie('login_error2', '', 100000);
-    $messages['login2'] = '<p class="msg">Такого аккаунта не существует</p>';
-  }
-  if (!empty($errors['password'])) {
-    setcookie('password_error', '', 100000);
-    $messages['password'] = '<p class="msg">Вы не заполнили пароль</p>';
-  }
-
-  include('loginform.php');
+elseif ($_SERVER['REQUEST_METHOD'] == 'GET') {
+?>
+<section>
+  <form action="" method="post">
+    <label>
+      Логин:<br>
+      <input type="text" name="login" />
+    </label><br>
+    <label>
+      Пароль:<br>
+      <input type="text" name="pass" />
+    </label><br>
+    <input type="submit" value="Войти" />
+  </form>
+</section>
+<?php
 }
+
 else {
+  include('../password.php');
+  $db = new PDO('mysql:host=localhost;dbname=u67327', $user, $pass,
+    [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    
   $login = $_POST['login'];
-  $password = $_POST['password'];
+  $pass = md5($_POST['pass']);
+  $sth = $db->prepare("SELECT * FROM login_password");
+  $sth->execute();
+  $log_pass = $sth->fetchAll();
 
-  if (empty($login)) {
-    setcookie('login_error1', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-  }
-  if (empty($password)) {
-    setcookie('password_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-  }
-
-  if ($errors) {
-    header('Location: login.php');
-    exit();
+  $flagSign = false;
+  foreach ($log_pass as $l_p) {
+    if ($login == $l_p['login'] && $pass == $l_p['password']) {
+      $flagSign = true;
+      break;
+    }
   }
 
-  include ('dbconnect.php');
-  
-  $stmt = $db->prepare('SELECT user_id FROM users WHERE (login = ?) AND (password = ?) ');
-  $stmt->execute([$login, md5($password)]);
-
-  if ($stmt->rowCount() > 0) {
+  if ($flagSign == true) {
+    if (!$session_started) {
+      session_start();
+    }
     $_SESSION['login'] = $_POST['login'];
-    $stmt = $db->prepare("SELECT application_id FROM users WHERE login = ?");
-    $stmt->execute([$login]);
-    $_SESSION['uid'] = $stmt->fetchColumn();
+    $_SESSION['uid'] = count($log_pass); 
     header('Location: ./');
-  } else {
-    setcookie('login_error2', '1', time() + 24 * 60 * 60);
-    header('Location: login.php');
-    exit();
+  }
+  else {
+    print('Данный пользователь не найден в базе данных.<br/>');
   }
 }
