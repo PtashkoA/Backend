@@ -1,134 +1,217 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+<html lang="ru">
+  <head>
   <link rel="stylesheet" href="style.css">
-  <title>Form</title>
-</head>
-<body>
+    <style>
+      .error {
+        border: 2px solid red;
+      }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4</title>
+  </head>
+
+  <body>
   <?php
-  if (!empty($messages['allok'])) {
-    print($messages['allok']);
+  if (!empty($messages)) {
+    print('<div id="messages">');
+    foreach ($messages as $message) {
+      print($message);
+    }
+    print('</div>');
   }
   ?>
-  <form action="" method="POST">
-    <div class="form-head">
-        <h1>Форма</h1>
-    </div>
-    <div class="form-content">
-      <div class="form-item">
-        <p <?php if ($errors['name1'] || $errors['name2']) {print 'class="error"';} ?>>Имя</p>
-        <input class="line" name="name" value="<?php echo $values['name']; ?>" />
-        <?php if ($errors['name1']) {print $messages['name1'];} else if ($errors['name2']) {print $messages['name2'];}?>
-      </div>
-      <div class="form-item">
-        <p <?php if ($errors['phone1'] || $errors['phone2']) {print 'class="error"';} ?>>Телефон</p>
-        <input class="line" name="phone" value="<?php print $values['phone']; ?>" />
-        <?php if ($errors['phone1']) {print $messages['phone1'];} else if ($errors['phone2']) {print $messages['phone2'];}?>
-      </div>
-      <div class="form-item">
-        <p <?php if ($errors['email1'] || $errors['email2']) {print 'class="error"';} ?>>Email</p>
-        <input class="line" name="email" value="<?php print $values['email']; ?>" />
-        <?php if ($errors['email1']) {print $messages['email1'];} else if ($errors['email2']) {print $messages['email2'];}?>
-      </div>
-      <div class="form-item">
-        <div class="date">
-          <span <?php if ($errors['year1'] || $errors['year2']) {print 'class="error"';} ?>>Год рождения:</span>
-          <select name="year">
-            <?php 
-              for ($i = 2024; $i >= 1922; $i--) {
-                if ($i == $values['year']) {
-                  printf('<option selected value="%d">%d год</option>', $i, $i);
-                } else {
-                printf('<option value="%d">%d год</option>', $i, $i);
-                }
-              }
-            ?>
-          </select>
-        </div>
-        <?php if ($errors['year1']) {print $messages['year1'];} else if ($errors['year2']) {print $messages['year2'];}?>  
-      </div>
-      <div class="form-item">
-        <p <?php if ($errors['gender1'] || $errors['gender2']) {print 'class="error"';} ?>>Пол:</p>
-        <?php if ($errors['gender1']) {print $messages['gender1'];} else if ($errors['gender2']) {print $messages['gender2'];}?>  
-        <ul>
-          <li>
-            <input type="radio" id="radioMale" name="gender" value="male" <?php if ($values['gender'] == 'male') {print 'checked';} ?>>
-            <label for="radioMale">Мужчина</label>
-          </li>
-          <li>
-            <input type="radio" id="radioFemale" name="gender" value="female" <?php if ($values['gender'] == 'female') {print 'checked';} ?>>
-            <label for="radioFemale">Женщина</label>
-          </li>
-        </ul>
-      </div>
-      <div class="form-item">
-        <p <?php if ($errors['languages1'] || $errors['languages2']) {print 'class="error"';} ?>>Выбери любимые<br>языки программирования:</p>
-        <?php if ($errors['languages1']) {print $messages['languages1'];} else if ($errors['languages2']) {print $messages['languages2'];}?>
-        <ul>
-          <li>
-            <input type="checkbox" id="Pascal" name="languages[]" value=1 <?php if (isset($values['languages']) && !empty($values['languages']) && in_array(1, unserialize($values['languages']))) {print 'checked';}?>>
-            <label for="Pascal">Pascal</label>
-          </li>
-          <li>
-            <input type="checkbox" id="C" name="languages[]" value=2 <?php if (isset($values['languages']) && !empty($values['languages']) && in_array(2, unserialize($values['languages']))) {print 'checked';}?>>
-            <label for="C">C</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Cpp" name="languages[]" value=3 <?php if (isset($values['languages']) && !empty($values['languages']) && in_array(3, unserialize($values['languages']))) {print 'checked';}?>>
-            <label for="Cpp">C++</label>
-          </li>
-          <li>
-            <input type="checkbox" id="JavaScript" name="languages[]" value=4 <?php if (isset($values['languages']) && !empty($values['languages']) && in_array(4, unserialize($values['languages']))) {print 'checked';}?>>
-            <label for="JavaScript">JavaScript</label>
-          </li>
-          <li>
-            <input type="checkbox" id="PHP" name="languages[]" value=5 <?php if (isset($values['languages']) && !empty($values['languages']) && in_array(5, unserialize($values['languages']))) {print 'checked';}?>>
-            <label for="PHP">PHP</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Python" name="languages[]" value=6 <?php if (isset($values['languages']) && !empty($values['languages']) && in_array(6, unserialize($values['languages']))) {print 'checked';}?>>
-            <label for="Python">Python</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Java" name="languages[]" value=7 <?php if (isset($values['languages']) && !empty($values['languages']) && in_array(7, unserialize($values['languages']))) {print 'checked';}?>>
-            <label for="Java">Java</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Haskel" name="languages[]" value=8 <?php if (isset($values['languages']) && !empty($values['languages']) && in_array(8, unserialize($values['languages']))) {print 'checked';}?>>
-            <label for="Haskel">Haskel</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Clojure" name="languages[]" value=9 <?php if (isset($values['languages']) && !empty($values['languages']) && in_array(9, unserialize($values['languages']))) {print 'checked';}?>>
-            <label for="Clojure">Clojure</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Prolog" name="languages[]" value=10 <?php if (isset($values['languages']) && !empty($values['languages']) && in_array(10, unserialize($values['languages']))) {print 'checked';}?>>
-            <label for="Prolog">Prolog</label>
-          </li>
-          <li>
-            <input type="checkbox" id="Scala" name="languages[]" value=11 <?php if (isset($values['languages']) && !empty($values['languages']) && in_array(11, unserialize($values['languages']))) {print 'checked';}?>>
-            <label for="Scala">Scala</label>
-          </li>
-        </ul> 
-      </div>
-      <div class="form-item">
-        <p class="big-text <?php if ($errors['biography1'] || $errors['biography2']) {print 'error';} ?>">Расскажи о себе:</p>
-        <?php if ($errors['biography1']) {print $messages['biography1'];} else if ($errors['biography2']) {print $messages['biography2'];}?>
-        <textarea name="biography" cols=24 rows=4 maxlength=128 spellcheck="false"><?php if (!empty($values['biography'])) {print $values['biography'];} ?></textarea>
-      </div>
-    </div>  
-    <div class="send">
-      <div class="contract">
-        <input type="checkbox" id="checkboxContract" name="checkboxContract" <?php if ($values['checkboxContract'] == '1') {print 'checked';} ?>>
-        <label for="checkboxContract" <?php if ($errors['checkboxContract']) {print 'class="error"';} ?>>С контрактом ознакомлен</label>
-        <?php if ($errors['checkboxContract']) {print $messages['checkboxContract'];} ?>
-      </div>
-      <input class="btn" type="submit" name="submit" value="Отправить" />
-    </div>
+
+    <form action="index.php" method="POST">
+
+    <label>
+    ФИО:<br>
+    <input name="fio" type="text" 
+    <?php if ($errors['fio']) {print 'class="error"';} ?> value="<?php print $values['fio']; ?>" 
+    placeholder="Введите ваши ФИО" />
+    </label><br>
+
+    <label>
+    Номер телефона:<br>
+    <input name="tel" type="tel" 
+    <?php if ($errors['tel']) {print 'class="error"';} ?> value="<?php print $values['tel']; 
+    ?>" placeholder="Введите ваш номер телефона" />
+    </label><br>
+    
+    <label>
+    Email:<br>
+    <input name="email" type="email" 
+    <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; 
+    ?>" placeholder="Введите вашу почту" />
+    </label><br>
+
+    <label>
+      Дата рождение:<br>
+      <select name="year" 
+      <?php if ($errors['year']) {print 'class="error"';} ?>>
+        <?php
+        for ($i = 1922; $i <= 2024; $i++) {
+          printf('<option %s value="%d">%d год</option>', $values['year'] == $i ? 'selected' : '', $i, $i);
+        }
+        ?>
+      </select><br>
+      
+      <br>
+      <select name="month" 
+      <?php if ($errors['month']) {print 'class="error"';} ?>>
+        <?php
+        for ($i = 1; $i <= 12; $i++) {
+          printf('<option %s value="%d">%d месяц</option>', $values['month'] == $i ? 'selected' : '', $i, $i);
+        }
+        ?>
+      </select><br>
+      
+      <br>
+      <select name="day" <?php if ($errors['day']) {print 'class="error"';} ?>>
+        <?php
+        for ($i = 1; $i <= 31; $i++) {
+          printf('<option %s value="%d">%d день</option>', $values['day'] == $i ? 'selected' : '', $i, $i);
+        }
+        ?>
+      </select><br>
+    </label>
+
+    <label class="
+    <?php if ($errors['radio1']) {print " error";} ?>">
+      Пол:
+      <input type="radio" name="radio1" value="woman" 
+      <?php if ($values['radio1'] == 'woman') print('checked'); ?>/> Женский
+      <input type="radio" name="radio1" value="man" 
+      <?php if ($values['radio1'] == 'man') print('checked'); ?>/> Мужской
+    </label><br>
+
+    <label>
+      Любимый язык программирования:
+      <br>
+      <select name="lang[]" multiple="multiple" 
+      <?php if ($errors['lang']) {print 'class="error"';} ?>>
+
+        <option <?php if (!empty($values) && !empty($values['lang'])) {
+        foreach($values['lang'] as $value) {
+          if ($value == "1") {
+            print("selected");
+            }
+          }
+        }
+        ?> value="1">Pascal</option>
+        
+        <option <?php if (!empty($values) && !empty($values['lang'])) {
+        foreach($values['lang'] as $value) {
+          if ($value == "2") {
+            print("selected");
+            }
+          }
+        }
+        ?> value="2">C</option>
+
+        <option <?php if (!empty($values) && !empty($values['lang'])) {
+        foreach($values['lang'] as $value) {
+          if ($value == "3") {
+            print("selected");
+            }
+          }
+        }
+        ?> value="3">C++</option>
+
+        <option <?php if (!empty($values) && !empty($values['lang'])) {
+        foreach($values['lang'] as $value) {
+          if ($value == "4") {
+            print("selected");
+            }
+          }
+        }
+        ?> value="4">JavaScript</option>
+
+        <option <?php if (!empty($values) && !empty($values['lang'])) {
+        foreach($values['lang'] as $value) {
+          if ($value == "5") {
+            print("selected");
+            }
+          }
+        }
+        ?> value="5">PHP</option>
+
+        <option <?php if (!empty($values) && !empty($values['lang'])) {
+        foreach($values['lang'] as $value) {
+          if ($value == "6") {
+            print("selected");
+            }
+          }
+        }
+        ?> value="6">Python</option>
+
+        <option <?php if (!empty($values) && !empty($values['lang'])) {
+        foreach($values['lang'] as $value) {
+          if ($value == "7") {
+            print("selected");
+            }
+          }
+        }
+        ?> value="7">Java</option>
+
+        <option <?php if (!empty($values) && !empty($values['lang'])) {
+        foreach($values['lang'] as $value) {
+          if ($value == "8") {
+            print("selected");
+            }
+          }
+        }
+        ?> value="8">Haskel</option>
+
+        <option <?php if (!empty($values) && !empty($values['lang'])) {
+        foreach($values['lang'] as $value) {
+          if ($value == "9") {
+            print("selected");
+            }
+          }
+        }
+        ?> value="9">Clojure</option>
+
+        <option <?php if (!empty($values) && !empty($values['lang'])) {
+        foreach($values['lang'] as $value) {
+          if ($value == "10") {
+            print("selected");
+            }
+          }
+        }
+        ?> value="10">Prolog</option>
+
+        <option <?php if (!empty($values) && !empty($values['lang'])) {
+        foreach($values['lang'] as $value) {
+          if ($value == "11") {
+            print("selected");
+            }
+          }
+        }
+        ?> value="11">Scala</option>
+      </select> 
+    </label><br>
+
+    <label>
+      Биография:<br>
+      <textarea name="bio">Я программист
+      <?php if ($errors['bio']) {print 'class="error"';} ?> 
+      <?php print $values['bio']; ?> </textarea>
+    </label><br>
+
+    <label class=" 
+      <?php if ($errors['check-1']) {print "error";} ?>">
+      С контрактом ознакомлен(а):
+      <input type="checkbox" 
+      <?php if (!empty($values['check-1'])) {print('checked');} ?> 
+      name="check-1" />
+    </label><br>
+
+    <input type="submit" 
+    value="Сохранить" 
+    name="button"/>
   </form>
-</body> 
+
+  </body>
 </html>
