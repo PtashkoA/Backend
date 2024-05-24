@@ -38,7 +38,7 @@ if (!empty($_COOKIE['save'])) {
 setcookie('admin', $login_admin[0]['password'], time() + 24 * 60 * 60);
 
 include('../password.php');
-$db = new PDO('mysql:host=localhost;dbname=u67327', $user, $pass,
+$db = new PDO('mysql:host=localhost;dbname=u67326', $user, $pass,
 [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
 $sth = $db->prepare("SELECT * FROM form");
